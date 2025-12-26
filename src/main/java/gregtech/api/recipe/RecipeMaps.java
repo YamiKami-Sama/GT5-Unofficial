@@ -1257,7 +1257,7 @@ public final class RecipeMaps {
 
     public static final RecipeMap<RecipeMapBackend> purificationPhAdjustmentRecipes = RecipeMapBuilder
         .of("gt.recipe.purificationplantphadjustment")
-        .maxIO(0, 0, 1, 1)
+        .maxIO(1, 0, 2, 1)
         .minInputs(0, 1)
         .progressBar(GTUITextures.PROGRESSBAR_MIXER)
         .frontend(PurificationUnitPhAdjustmentFrontend::new)
@@ -1265,14 +1265,14 @@ public final class RecipeMaps {
 
     public static final RecipeMap<RecipeMapBackend> purificationPlasmaHeatingRecipes = RecipeMapBuilder
         .of("gt.recipe.purificationplantplasmaheating")
-        .maxIO(0, 0, 1, 1)
+        .maxIO(0, 0, 3, 1)
         .minInputs(0, 1)
         .progressBar(GTUITextures.PROGRESSBAR_BOILER_HEAT)
         .frontend(PurificationUnitPlasmaHeaterFrontend::new)
         .build();
     public static final RecipeMap<RecipeMapBackend> purificationUVTreatmentRecipes = RecipeMapBuilder
         .of("gt.recipe.purificationplantuvtreatment")
-        .maxIO(0, 0, 1, 1)
+        .maxIO(9, 0, 1, 1)
         .minInputs(0, 1)
         .progressBar(GTUITextures.PROGRESSBAR_ARROW)
         .frontend(PurificationUnitLaserFrontend::new)
@@ -1285,7 +1285,7 @@ public final class RecipeMaps {
         .build();
     public static final RecipeMap<RecipeMapBackend> purificationParticleExtractionRecipes = RecipeMapBuilder
         .of("gt.recipe.purificationplantquarkextractor")
-        .maxIO(2, 2, 1, 2)
+        .maxIO(6, 2, 1, 2)
         .minInputs(0, 1)
         .progressBar(GTUITextures.PROGRESSBAR_ARROW)
         .frontend(PurificationUnitParticleExtractorFrontend::new)
@@ -1321,11 +1321,21 @@ public final class RecipeMaps {
         .build();
     public static final RecipeMap<RecipeMapBackend> cauldronRecipe = RecipeMapBuilder
         .of("gt.recipe.cauldron", RecipeMapBackend::new)
-        .maxIO(1, 1, 0, 0)
-        .minInputs(1, 0)
+        .maxIO(1, 1, 1, 0)
+        .minInputs(1, 1)
         .progressBar(GTUITextures.PROGRESSBAR_ARROW)
+        .neiRecipeBackgroundOffset(7, 0)
+        .neiRecipeBackgroundSize(165, 60)
+        .logoPos(150, 38)
         .frontend(CauldronFrontend::new)
-        .neiHandlerInfo(builder -> builder.setDisplayStack(new ItemStack(Items.cauldron)))
+        .neiHandlerInfo(builder -> {
+            builder.setWidth(170);
+            builder.setHeight(60);
+            builder.setDisplayStack(new ItemStack(Items.cauldron));
+            builder.setShowFavoritesButton(false);
+            builder.setShowOverlayButton(false);
+            return builder;
+        })
         .build();
 
 }
