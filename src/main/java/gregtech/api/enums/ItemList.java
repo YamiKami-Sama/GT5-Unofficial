@@ -2772,6 +2772,14 @@ public enum ItemList implements IItemContainer {
     CokeOvenCasing,
     CokeOvenHatch,
 
+    CausalityResistantCasing,
+    CausalityResistantGlass,
+    RealityAttunedCasing,
+    CausalityAttractionEngine,
+    RealityShifterCasing,
+    RealityFabricSiphonController,
+    RealityPhaseTunerModule
+
     // semicolon after the comment to reduce merge conflicts
     ;
 
