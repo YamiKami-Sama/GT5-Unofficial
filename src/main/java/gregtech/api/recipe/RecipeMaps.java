@@ -48,7 +48,38 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.enums.TierEU;
 import gregtech.api.gui.modularui.GTUITextures;
 import gregtech.api.objects.ItemData;
-import gregtech.api.recipe.maps.*;
+import gregtech.api.recipe.maps.AssemblerBackend;
+import gregtech.api.recipe.maps.AssemblyLineFrontend;
+import gregtech.api.recipe.maps.CauldronFrontend;
+import gregtech.api.recipe.maps.DistillationTowerFrontend;
+import gregtech.api.recipe.maps.EFRBlastingBackend;
+import gregtech.api.recipe.maps.EFRSmokingBackend;
+import gregtech.api.recipe.maps.FluidCannerBackend;
+import gregtech.api.recipe.maps.FluidOnlyFrontend;
+import gregtech.api.recipe.maps.FormingPressBackend;
+import gregtech.api.recipe.maps.FoundryModuleFrontend;
+import gregtech.api.recipe.maps.FuelBackend;
+import gregtech.api.recipe.maps.FurnaceBackend;
+import gregtech.api.recipe.maps.IsotopeDecayFrontend;
+import gregtech.api.recipe.maps.LargeBoilerFuelBackend;
+import gregtech.api.recipe.maps.LargeBoilerFuelFrontend;
+import gregtech.api.recipe.maps.LargeNEIFrontend;
+import gregtech.api.recipe.maps.MicrowaveBackend;
+import gregtech.api.recipe.maps.OilCrackerBackend;
+import gregtech.api.recipe.maps.PrinterBackend;
+import gregtech.api.recipe.maps.PurificationUnitClarifierFrontend;
+import gregtech.api.recipe.maps.PurificationUnitFlocculatorFrontend;
+import gregtech.api.recipe.maps.PurificationUnitLaserFrontend;
+import gregtech.api.recipe.maps.PurificationUnitOzonationFrontend;
+import gregtech.api.recipe.maps.PurificationUnitParticleExtractorFrontend;
+import gregtech.api.recipe.maps.PurificationUnitPhAdjustmentFrontend;
+import gregtech.api.recipe.maps.PurificationUnitPlasmaHeaterFrontend;
+import gregtech.api.recipe.maps.QuantumComputerFrontend;
+import gregtech.api.recipe.maps.RecyclerBackend;
+import gregtech.api.recipe.maps.ReplicatorBackend;
+import gregtech.api.recipe.maps.SpaceProjectFrontend;
+import gregtech.api.recipe.maps.TranscendentPlasmaMixerFrontend;
+import gregtech.api.recipe.maps.UnpackagerBackend;
 import gregtech.api.recipe.metadata.CompressionTierKey;
 import gregtech.api.recipe.metadata.PCBFactoryTierKey;
 import gregtech.api.recipe.metadata.PurificationPlantBaseChanceKey;
@@ -1010,20 +1041,6 @@ public final class RecipeMaps {
             return ret;
         })
         .build();
-    public static final RecipeMap<RecipeMapBackend> slicerRecipes = RecipeMapBuilder.of("gt.recipe.slicer")
-        .maxIO(2, 1, 0, 0)
-        .minInputs(2, 0)
-        .slotOverlays((index, isFluid, isOutput, isSpecial) -> {
-            if (isOutput) {
-                return GTUITextures.OVERLAY_SLOT_SLICER_SLICED;
-            }
-            if (index == 0) {
-                return GTUITextures.OVERLAY_SLOT_SQUARE;
-            }
-            return GTUITextures.OVERLAY_SLOT_SLICE_SHAPE;
-        })
-        .progressBar(GTUITextures.PROGRESSBAR_SLICE)
-        .build();
     public static final RecipeMap<RecipeMapBackend> extruderRecipes = RecipeMapBuilder.of("gt.recipe.extruder")
         .maxIO(2, 1, 0, 0)
         .minInputs(2, 0)
@@ -1307,6 +1324,19 @@ public final class RecipeMaps {
             return builder;
         })
         .build();
+
+    public static final RecipeMap<RecipeMapBackend> foundryFakeModuleCostRecipes = RecipeMapBuilder
+        .of("gt.recipe.foundry_modules")
+        .maxIO(12, 1, 0, 0)
+        .addSpecialTexture(87, 38, 30, 13, GTUITextures.PICTURE_ARROW_GRAY)
+        .dontUseProgressBar()
+        .neiTransferRect(87, 38, 30, 13)
+        .frontend(FoundryModuleFrontend::new)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(ItemList.Machine_Multi_ExoFoundry.get(1))
+                .setHeight(100))
+        .build();
+
     public static final RecipeMap<RecipeMapBackend> causalityRecipes = RecipeMapBuilder
         .of("gt.recipe.causalityenricher")
         .maxIO(12, 1, 4, 0)

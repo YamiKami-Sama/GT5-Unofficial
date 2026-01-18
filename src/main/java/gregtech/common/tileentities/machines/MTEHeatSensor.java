@@ -20,6 +20,7 @@ import gregtech.api.interfaces.IIconContainer;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.interfaces.tileentity.IHeatProducer;
 import gregtech.api.metatileentity.implementations.MTEHatch;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.IGTHatchAdder;
@@ -27,7 +28,7 @@ import gregtech.common.gui.modularui.hatch.MTEHeatSensorGui;
 
 public class MTEHeatSensor extends MTEHatch {
 
-    protected static final IIconContainer textureFont = Textures.BlockIcons.OVERLAY_HATCH_HEAT_SENSOR;
+    protected static final IIconContainer TEXTURE_FRONT = Textures.BlockIcons.OVERLAY_HATCH_HEAT_SENSOR;
     protected static final IIconContainer textureFont_Glow = Textures.BlockIcons.OVERLAY_HATCH_HEAT_SENSOR_GLOW;
 
     protected double threshold = 0;
@@ -83,7 +84,7 @@ public class MTEHeatSensor extends MTEHatch {
 
     @Override
     public String[] getDescription() {
-        return new String[] { "Read heat of a machine.",
+        return new String[] { "Reads heat of a machine.",
             "Send redstone signal if the heat is greater than the threshold.",
             "Right click to open the GUI and change settings." };
     }
@@ -104,10 +105,7 @@ public class MTEHeatSensor extends MTEHatch {
         super.saveNBTData(aNBT);
     }
 
-    /**
-     * Updates redstone output based on the heat of the machine.
-     */
-    public void updateRedstoneOutput(float heat) {
+    public void setHeatValue(float heat) {
         this.heat = heat;
     }
 
@@ -131,7 +129,7 @@ public class MTEHeatSensor extends MTEHatch {
 
     @Override
     public ITexture[] getTexturesActive(ITexture aBaseTexture) {
-        return new ITexture[] { aBaseTexture, TextureFactory.of(textureFont), TextureFactory.builder()
+        return new ITexture[] { aBaseTexture, TextureFactory.of(TEXTURE_FRONT), TextureFactory.builder()
             .addIcon(textureFont_Glow)
             .glow()
             .build() };
@@ -139,7 +137,7 @@ public class MTEHeatSensor extends MTEHatch {
 
     @Override
     public ITexture[] getTexturesInactive(ITexture aBaseTexture) {
-        return new ITexture[] { aBaseTexture, TextureFactory.of(textureFont) };
+        return new ITexture[] { aBaseTexture, TextureFactory.of(TEXTURE_FRONT) };
     }
 
     public double getThreshold() {

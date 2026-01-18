@@ -23,10 +23,25 @@ public interface IMTERenderer {
         return 4096.0D;
     }
 
-    void encodeRenderData(ByteBuf buffer);
+    /**
+     * Encore render data used by the client (Server side)
+     *
+     * @param buffer
+     */
+    default void encodeRenderData(ByteBuf buffer) {};
 
-    void decodeRenderData(ByteArrayDataInput buffer);
+    /**
+     * Decodes render data used by the client (Client side)
+     *
+     * @param buffer
+     */
+    default void decodeRenderData(ByteArrayDataInput buffer) {};
 
+    /**
+     * Send render data to the client
+     *
+     * @param mte
+     */
     default void sendRenderDataToClient(IMetaTileEntity mte) {
         IGregTechTileEntity tile = mte.getBaseMetaTileEntity();
         if (tile.isClientSide()) return;
@@ -42,5 +57,4 @@ public interface IMTERenderer {
                 player -> GTValues.NW
                     .sendToPlayer(new GTPacketClientMTERendererData(x, y, z, this), (EntityPlayerMP) player));
     }
-
 }
