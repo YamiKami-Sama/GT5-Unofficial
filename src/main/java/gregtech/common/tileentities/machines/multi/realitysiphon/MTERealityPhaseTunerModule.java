@@ -48,6 +48,7 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.interfaces.tileentity.IHeatProducer;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
@@ -56,7 +57,6 @@ import gregtech.api.util.shutdown.ShutDownReasonRegistry;
 import gregtech.common.blocks.BlockCasings13;
 import gregtech.common.gui.modularui.multiblock.base.MTEMultiBlockBaseGui;
 import gregtech.common.gui.modularui.multiblock.base.MTERealitySiphonModuleBaseGui;
-import gregtech.common.tileentities.machines.IHeatProducer;
 import gregtech.common.tileentities.machines.MTEHeatSensor;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -265,7 +265,7 @@ public class MTERealityPhaseTunerModule extends MTERealitySiphonModuleBase<MTERe
             if (aTick % 20 == 0) updateAndGetTargetSiphon();
 
             for (MTEHeatSensor hatch : sensorHatches) {
-                hatch.updateRedstoneOutput(heat);
+                hatch.setHeatValue(heat);
             }
         }
     }

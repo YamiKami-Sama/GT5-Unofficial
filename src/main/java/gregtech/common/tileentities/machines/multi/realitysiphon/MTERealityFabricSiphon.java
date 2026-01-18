@@ -640,7 +640,7 @@ public class MTERealityFabricSiphon extends MTEExtendedPowerMultiBlockBase<MTERe
         .addElement('B', ofBlock(GregTechAPI.sBlockCasings13, 10))
         .addElement('C', ofBlock(GregTechAPI.sBlockCasings13, 11))
         .addElement('D', ofBlock(GregTechAPI.sBlockCasings13, 12))
-        .addElement('E', ofBlock(GregTechAPI.sBlockGlass1, 7))
+        .addElement('E', ofBlock(GregTechAPI.sBlockGlass1, 8))
         .addElement(
             'F',
             ofChain(
@@ -951,7 +951,7 @@ public class MTERealityFabricSiphon extends MTEExtendedPowerMultiBlockBase<MTERe
 
     /**
      * Consume generated causality, return false if not enough
-     * 
+     *
      * @param causality Amount of causality to consume
      * @return true if success, false otherwise
      */
